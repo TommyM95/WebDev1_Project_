@@ -3,35 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <title>HiveCore</title>
+
     <link rel="stylesheet" href="css/hexStyle.css">
     <link rel="stylesheet" href="css/myStyle.css">
-  <link rel="stylesheet" href="css/star.css">
+    <link rel="stylesheet" href="css/star.css">
+
+    <script type="text/javascript" src="js/main.js"></script>
+
 </head>
 <body id="body">
 
 <!--<a id="fork" target="_blank" href="https://github.com/web-tiki/responsive-grid-of-hexagons">Fork on GitHub</a> -->
-<nav class="nav">
-  <ul class="nav-ul">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="index.html">Meet the Team</a></li>
-    <li><a href="index.html">About</a></li>
-    <li><a href="index.html">Game</a></li>
-    <li><a href="index.html">Contact</a></li>
-  </ul>
-</nav>
+<div id="myID" class="bottomMenu hide">
+  <nav class="nav">
+    <ul class="nav-ul">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="#team">Meet the Team</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="index.html">Game</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</div>
+<script type="text/javascript" src="js/navBarScroll.js"></script>
+
 
 <div id="stars"></div>
 
 <ul id="hexGrid" data-tilt data-tilt-max="5" data-tilt-speed="200" data-tilt-perspective="1000">
   <li class="hex">
     <a class="hexIn" href="#">
-      <img src="assets/images/home.png" alt="" />
+      <img src="assets/images/game2.png" alt="" />
       <h1>This is a title</h1>
       <p>Some sample text about the article this hexagon leads to</p>
     </a>
   </li>
   <li class="hex">
-    <a class="hexIn" href="#">
+    <a class="hexIn" href="#about">
       <img src="assets/images/about.png" alt="" />
       <h1>This is a title</h1>
       <p>Some sample text about the article this hexagon leads to</p>
@@ -59,14 +67,14 @@
     </a>
   </li>
   <li class="hex">
-    <a class="hexIn" href="#">
+    <a class="hexIn" href="#team">
       <img src="assets/images/team.png" alt="" />
       <h1>This is a title</h1>
       <p>Some sample text about the article this hexagon leads to</p>
     </a>
   </li>
   <li class="hex">
-    <a class="hexIn" href="#">
+    <a class="hexIn" href="#contact">
       <img src="assets/images/contact.png" alt="" />
       <h1>This is a title</h1>
       <p>Some sample text about the article this hexagon leads to</p>
@@ -74,14 +82,24 @@
   </li>
 </ul>
 
-<div></div>
-<div></div>
-<div></div>
-<div></div>
+
+<div id="about">
+  <h2>About</h2>
+  <p>about stuff blah</p>
+</div>
+<div id="team">
+  <h2>Team</h2>
+  <p>team stuff blah</p>
+</div>
+<div id="contact">
+  <h2>Contact</h2>
+  <p>contact stuff blah</p>
+</div>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
 </body>
-<footer>
-
+<footer id="footer">
+  <h2>Footer</h2>
+  <p>footer stuff blah</p>
 </footer>
 </html>

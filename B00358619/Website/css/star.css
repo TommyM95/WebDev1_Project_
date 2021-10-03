@@ -25,6 +25,6 @@ html {
     }
 
     to {
-        transform: translateY(-0px);
+        transform: translateY(100px);
     }
 }
