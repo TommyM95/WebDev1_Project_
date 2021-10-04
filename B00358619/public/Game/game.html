@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Making your first Phaser 3 Game - Part 1</title>
+    <script src="//cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.js"></script>
+    <link rel="text/css" href="css/gameStyle.css">
+</head>
+<body>
+
+<script type="text/javascript">
+
+    var config = {
+        type: Phaser.AUTO,
+        width: 800,
+        height: 600,
+        physics: {
+            default: 'arcade',
+            arcade: {
+                gravity: { y: 300 },
+                debug: false
+            }
+        },
+        scene: {
+            preload: preload,
+            create: create,
+            update: update
+        }
+    };
+
+    let cursors;
+    let player;
+    let floatingRockObstacles;
+
+    var game = new Phaser.Game(config);
+
+    function preload ()
+    {
+        this.load.image('skyBackground', 'assets/sky_background.png');
+        this.load.image('floatingRock', 'assets/floatingrock.png');
+        this.load.image('plane', 'assets/plane.png');
+    }
+
+    function create ()
+    {
+        // init controls
+        cursors = this.input.keyboard.createCursorKeys();
+
+        // rendering background image
+        this.add.image(400,300,'skyBackground');
+
+        // Creating a group for the floating rock obstacles
+        floatingRockObstacles = this.physics.add.staticGroup();
+
+        // Creating a floating rock obstacle
+        floatingRockObstacles.create(400,450, 'floatingRock');
+
+        // init Player @ position
+        player = this.physics.add.sprite(400, 100, 'plane');
+        // Defining player properties
+        player.setBounce(0.2);
+        player.setCollideWorldBounds(true);
+        // Adding collision between player and obstacles
+        this.physics.add.collider(player, floatingRockObstacles);
+
+
+
+
+
+    }
+
+    function update ()
+    {
+        // Movement
+        if (cursors.up.isDown || cursors.space.isDown){
+            player.setVelocityY(-100);
+        }
+    }
+
+</script>
+
+</body>
+</html>
