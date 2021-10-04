@@ -1,12 +1,15 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <script src="https://cdn.jsdelivr.net/npm/phaser@3.15.1/dist/phaser-arcade-physics.min.js"></script>
+    <meta charset="UTF-8" />
+    <title>Making your first Phaser 3 Game - Part 1</title>
+    <script src="//cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.js"></script>
+    <link rel="text/css" href="css/gameStyle.css">
 </head>
 <body>
-<script>
+
+<script type="text/javascript">
+
     var config = {
         type: Phaser.AUTO,
         width: 800,
@@ -14,46 +17,63 @@
         physics: {
             default: 'arcade',
             arcade: {
-                gravity: { y: 200 }
+                gravity: { y: 300 },
+                debug: false
             }
         },
         scene: {
             preload: preload,
-            create: create
+            create: create,
+            update: update
         }
     };
+
+    let cursors;
+    let player;
+    let floatingRockObstacles;
 
     var game = new Phaser.Game(config);
 
     function preload ()
     {
-        this.load.setBaseURL('http://labs.phaser.io');
-
-        this.load.image('sky', 'assets/skies/space3.png');
-        this.load.image('logo', 'assets/sprites/phaser3-logo.png');
-        this.load.image('red', 'assets/particles/red.png');
+        this.load.image('skyBackground', 'assets/sky_background.png');
+        this.load.image('floatingRock', 'assets/floatingrock.png');
+        this.load.image('plane', 'assets/plane.png');
     }
 
     function create ()
     {
-        this.add.image(400, 300, 'sky');
+        // init controls
+        cursors = this.input.keyboard.createCursorKeys();
 
-        var particles = this.add.particles('red');
+        // rendering background image
+        this.add.image(400,300,'skyBackground');
 
-        var emitter = particles.createEmitter({
-            speed: 100,
-            scale: { start: 1, end: 0 },
-            blendMode: 'ADD'
-        });
+        // Creating a group for the floating rock obstacles
+        floatingRockObstacles = this.physics.add.staticGroup();
 
-        var logo = this.physics.add.image(400, 100, 'logo');
+        // Creating a floating rock obstacle
+        floatingRockObstacles.create(400,450, 'floatingRock');
 
-        logo.setVelocity(100, 200);
-        logo.setBounce(1, 1);
-        logo.setCollideWorldBounds(true);
+        // init Player @ position
+        player = this.physics.add.sprite(400, 100, 'plane');
+        // Defining player properties
+        player.setBounce(0.2);
+        player.setCollideWorldBounds(true);
+        // Adding collision between player and obstacles
+        this.physics.add.collider(player, floatingRockObstacles);
 
-        emitter.startFollow(logo);
     }
+
+    function update ()
+    {
+        // Movement
+        if (cursors.up.isDown || cursors.space.isDown){
+            player.setVelocityY(-100);
+        }
+    }
+
 </script>
+
 </body>
 </html>
