@@ -67,22 +67,28 @@
 
 /*** about **********************************************************************/
 
-#about{
-    padding: 300px 10%;
+#gameDesign{
+    height: auto;
+    padding: 50px 10%;
+    text-align: center;
     background-color: aquamarine;
 }
 
 /*** team **********************************************************************/
 
 #team{
-    padding: 300px 10%;
+    height: auto;
+    padding: 50px 10%;
+    text-align: center;
     background-color: greenyellow;
 }
 
 /*** contact **********************************************************************/
 
 #contact{
-    padding: 300px 10%;
+    height: auto;
+    padding: 50px 10%;
+    text-align: center;
     background-color: rebeccapurple;
 }
 
