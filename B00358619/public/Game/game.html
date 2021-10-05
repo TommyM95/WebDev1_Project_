@@ -52,7 +52,6 @@
         this.load.image('medal', 'assets/medal.png');
         this.load.image('clouds-large', "assets/clouds-large.png");
         this.load.image('clouds-small', "assets/clouds-small.png");
-        this.load.image('ground', 'assets/ground.png');
     }
 
     function create ()
@@ -65,17 +64,11 @@
         cloudsLarge = this.add.tileSprite(400,300,800,600, 'clouds-large');
         cloudsSmall = this.add.tileSprite(400,300,800,600, 'clouds-small');
 
-        this.ground = this.physics.add.sprite(0,0, 'ground').setCollideWorldBounds();
-        // this.ground.setImmovable(true);
-
         // Creating a group for the floating rock obstacles
-        //floatingRockObstacles = this.physics.add.staticGroup();
         floatingRockObstacles = this.physics.add.group({
             allowGravity: false,
             immovable: true
         });
-
-
 
         // Creating a group for the floating Medals
         medals = this.physics.add.group({
@@ -83,38 +76,31 @@
         });
 
         // Creating a floating rock obstacle
-        //floatingRockObstacles.create(400,450, 'floatingRock');
-
         let lastSpawnX = 0;
         for (let i =0; i < 20; i++){
             let randNumY = Phaser.Math.Between(gameOptions.obstacleStatPosMinY,gameOptions.obstacleStatPosMaxY);
             let randNumX = Phaser.Math.Between(400,800);
-
-
             floatingRockObstacles.create(lastSpawnX+randNumX,randNumY, 'floatingRock');
             lastSpawnX += randNumX;
             console.log('Spawned rock ' + i);
         }
 
-
+        // Making Rocks move
         Phaser.Actions.Call(floatingRockObstacles.getChildren(), function(go) {
             go.setVelocityX(-90)
         });
 
-        // Creating test medal
+        // Creating medals
         medals.create(400,35, 'medal');
         let lastMedalSpawnX = 0;
         for (let i =0; i < 20; i++){
             let randNumY = Phaser.Math.Between(gameOptions.obstacleStatPosMinY,gameOptions.obstacleStatPosMaxY);
             let randNumX = Phaser.Math.Between(400,800);
-
-
             medals.create(lastMedalSpawnX+randNumX,randNumY, 'medal');
             lastMedalSpawnX += randNumX;
             console.log('Spawned medal ' + i);
         }
-
-
+        // Making medals move
         Phaser.Actions.Call(medals.getChildren(), function(go) {
             go.setVelocityX(-80)
         });
