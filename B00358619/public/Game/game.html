@@ -45,8 +45,9 @@
         this.load.image('floatingRock', 'assets/floatingrock.png');
         this.load.image('plane', 'assets/plane.png');
         this.load.image('medal', 'assets/medal.png');
-        this.load.image("clouds-large", "assets/clouds-large.png");
-        this.load.image("clouds-small", "assets/clouds-small.png");
+        this.load.image('clouds-large', "assets/clouds-large.png");
+        this.load.image('clouds-small', "assets/clouds-small.png");
+        this.load.image('ground', 'assets/ground.png');
     }
 
     function create ()
@@ -59,9 +60,15 @@
         cloudsLarge = this.add.tileSprite(400,300,800,600, 'clouds-large');
         cloudsSmall = this.add.tileSprite(400,300,800,600, 'clouds-small');
 
+        this.ground = this.physics.add.sprite(0,0, 'ground').setCollideWorldBounds();
+        // this.ground.setImmovable(true);
 
         // Creating a group for the floating rock obstacles
-        floatingRockObstacles = this.physics.add.staticGroup();
+        // floatingRockObstacles = this.physics.add.staticGroup();
+        floatingRockObstacles = this.physics.add.group();
+
+
+
         // Creating a group for the floating Medals
         medals = this.physics.add.staticGroup();
 
@@ -105,6 +112,8 @@
         // Move Clouds
         cloudsLarge.tilePositionX += 0.5;
         cloudsSmall.tilePositionX += 0.25;
+
+
     }
 
 </script>
