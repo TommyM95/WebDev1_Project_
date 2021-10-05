@@ -28,6 +28,11 @@
         }
     };
 
+    let gameOptions = {
+        obstacleStatPosMinY: 10,
+        obstacleStatPosMaxY: screenTop
+    }
+
     let cursors;                    // Controls
     let player;                     // Player
     let floatingRockObstacles;      // Rock Type 1 Obstacle
@@ -75,6 +80,15 @@
         // Creating a floating rock obstacle
         floatingRockObstacles.create(400,450, 'floatingRock');
 
+
+        for (let i =0; i > 10; i++){
+            let randNumY = Phaser.Math.Between(gameOptions.obstacleStatPosMinY,gameOptions.obstacleStatPosMaxY);
+            let randNumX = Phaser.Math.Between(100,600);
+            floatingRockObstacles.create(randNumX,randNumY, 'floatingRock');
+            Console.Log('Spawned rock ' + i);
+        }
+        Console.Log('Spawned rock ');
+
         // Creating test medal
         medals.create(400,35, 'medal');
 
@@ -97,9 +111,8 @@
             scoreText.setText('Score: ' + score);
         }
 
-
         scoreText = this.add.text(16, 16, 'Score: 0', { fontSize: '24px', fill: '#000' });
-        console.log(Phaser.Time.Clock);
+
     }
 
     function update ()
