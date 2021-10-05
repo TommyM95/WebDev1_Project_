@@ -29,8 +29,8 @@
     };
 
     let gameOptions = {
-        obstacleStatPosMinY: 10,
-        obstacleStatPosMaxY: screenTop
+        obstacleStatPosMinY: 0,
+        obstacleStatPosMaxY: 600
     }
 
     let cursors;                    // Controls
@@ -69,29 +69,55 @@
         // this.ground.setImmovable(true);
 
         // Creating a group for the floating rock obstacles
-        // floatingRockObstacles = this.physics.add.staticGroup();
-        floatingRockObstacles = this.physics.add.group();
+        //floatingRockObstacles = this.physics.add.staticGroup();
+        floatingRockObstacles = this.physics.add.group({
+            allowGravity: false,
+            immovable: true
+        });
 
 
 
         // Creating a group for the floating Medals
-        medals = this.physics.add.staticGroup();
+        medals = this.physics.add.group({
+            allowGravity: false
+        });
 
         // Creating a floating rock obstacle
-        floatingRockObstacles.create(400,450, 'floatingRock');
+        //floatingRockObstacles.create(400,450, 'floatingRock');
 
-
-        for (let i =0; i > 10; i++){
+        let lastSpawnX = 0;
+        for (let i =0; i < 20; i++){
             let randNumY = Phaser.Math.Between(gameOptions.obstacleStatPosMinY,gameOptions.obstacleStatPosMaxY);
-            let randNumX = Phaser.Math.Between(100,600);
-            floatingRockObstacles.create(randNumX,randNumY, 'floatingRock');
-            Console.Log('Spawned rock ' + i);
+            let randNumX = Phaser.Math.Between(400,800);
+
+
+            floatingRockObstacles.create(lastSpawnX+randNumX,randNumY, 'floatingRock');
+            lastSpawnX += randNumX;
+            console.log('Spawned rock ' + i);
         }
-        Console.Log('Spawned rock ');
+
+
+        Phaser.Actions.Call(floatingRockObstacles.getChildren(), function(go) {
+            go.setVelocityX(-90)
+        });
 
         // Creating test medal
         medals.create(400,35, 'medal');
+        let lastMedalSpawnX = 0;
+        for (let i =0; i < 20; i++){
+            let randNumY = Phaser.Math.Between(gameOptions.obstacleStatPosMinY,gameOptions.obstacleStatPosMaxY);
+            let randNumX = Phaser.Math.Between(400,800);
 
+
+            medals.create(lastMedalSpawnX+randNumX,randNumY, 'medal');
+            lastMedalSpawnX += randNumX;
+            console.log('Spawned medal ' + i);
+        }
+
+
+        Phaser.Actions.Call(medals.getChildren(), function(go) {
+            go.setVelocityX(-80)
+        });
 
         // init Player @ position
         player = this.physics.add.sprite(400, 100, 'plane');
@@ -101,6 +127,7 @@
 
         // Adding collision between player and obstacles
         this.physics.add.collider(player, floatingRockObstacles);
+
         // Making the medals be able to be picked up by the player on Collision
         this.physics.add.overlap(player, medals, collectMedal, null, this);
         // Func to handle the collection of Medals
@@ -125,8 +152,6 @@
         // Move Clouds
         cloudsLarge.tilePositionX += 0.5;
         cloudsSmall.tilePositionX += 0.25;
-
-
     }
 
 </script>

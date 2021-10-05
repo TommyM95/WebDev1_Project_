@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JavaScriptLibraryMappings">
-    <file url="PROJECT" libraries="{modernizr, normalize, vanilla-tilt}" />
+    <file url="file://$PROJECT_DIR$" libraries="{B00358619/node_modules}" />
+    <file url="PROJECT" libraries="{B00358619/node_modules, modernizr, normalize, vanilla-tilt}" />
     <includedPredefinedLibrary name="Node.js Core" />
   </component>
 </project>
