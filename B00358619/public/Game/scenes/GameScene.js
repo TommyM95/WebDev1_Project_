@@ -1,54 +1,23 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <title>HiveCore</title>
-    <script src="//cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.js"></script>
-    <link rel="text/css" href="css/gameStyle.css">
-</head>
-<body>
+let gameOptions = {
+    obstacleStatPosMinY: 0,
+    obstacleStatPosMaxY: 600
+}
 
-<div id="game">
-    <script type="module" src="scenes/main.js"></script>
-</div>
+let cursors;                    // Controls
+let player;                     // Player
+let floatingRockObstacles;      // Rock Type 1 Obstacle
+let medals;                     // Medals (things collided with for points)
+let score = 0;                  // Score
+let scoreText;                  // Score Text object
+let cloudsLarge;
+let cloudsSmall;
 
-<!--<script type="text/javascript">
-
-    let config = {
-        type: Phaser.AUTO,
-        width: 800,
-        height: 600,
-        physics: {
-            default: 'arcade',
-            arcade: {
-                gravity: { y: 300 },
-                debug: false
-            }
-        },
-        scene: {
-            preload: preload,
-            create: create,
-            update: update
-        }
-    };
-
-    let gameOptions = {
-        obstacleStatPosMinY: 0,
-        obstacleStatPosMaxY: 600
+class GameScene extends Phaser.Scene {
+    constructor() {
+        super({key: 'GameScene'});
     }
 
-    let cursors;                    // Controls
-    let player;                     // Player
-    let floatingRockObstacles;      // Rock Type 1 Obstacle
-    let medals;                     // Medals (things collided with for points)
-    let score = 0;                  // Score
-    let scoreText;                  // Score Text object
-    let cloudsLarge;
-    let cloudsSmall;
-
-    const game = new Phaser.Game(config);
-
-    function preload ()
+    preload ()
     {
         this.load.image('skyBackground', 'assets/sky_background.png');
         this.load.image('floatingRock', 'assets/floatingrock.png');
@@ -58,7 +27,7 @@
         this.load.image('clouds-small', "assets/clouds-small.png");
     }
 
-    function create ()
+    create ()
     {
         // init controls
         cursors = this.input.keyboard.createCursorKeys();
@@ -123,16 +92,17 @@
         // Func to handle the collection of Medals
         function collectMedal(player, medal){
             medal.disableBody(true,true);
-
+            // Updating the score
             score += 1;
+            // Updating the Score Text to reflect score
             scoreText.setText('Score: ' + score);
         }
-
+        // Init score text
         scoreText = this.add.text(16, 16, 'Score: 0', { fontSize: '24px', fill: '#000' });
 
     }
 
-    function update ()
+    update ()
     {
         // Movement
         if (cursors.up.isDown || cursors.space.isDown){
@@ -144,7 +114,6 @@
         cloudsSmall.tilePositionX += 0.25;
     }
 
-</script>-->
+}
 
-</body>
-</html>
+export default GameScene;
