@@ -11,6 +11,7 @@ let score = 0;                  // Score
 let scoreText;                  // Score Text object
 let cloudsLarge;
 let cloudsSmall;
+let otherBackground;
 
 class GameScene extends Phaser.Scene {
     constructor() {
@@ -20,8 +21,13 @@ class GameScene extends Phaser.Scene {
     preload ()
     {
         this.load.image('skyBackground', 'assets/sky_background.png');
-        this.load.image('floatingRock', 'assets/floatingrock.png');
-        this.load.image('plane', 'assets/plane.png');
+        this.load.image('otherBg', "sourcedAssets/BG_Resize.png");
+        this.load.image('floatingRock', 'assets/floatyRockTest.png');
+        // this.load.image('plane', 'sourcedAssets/Plane/plane_1_Resize.png');
+        this.load.spritesheet('plane', 'sourcedAssets/Plane/flyingSprSheet.png',{
+            frameWidth: 150, frameHeight: 97
+    });
+
         this.load.image('medal', 'assets/medal.png');
         this.load.image('clouds-large', "assets/clouds-large.png");
         this.load.image('clouds-small', "assets/clouds-small.png");
@@ -34,6 +40,8 @@ class GameScene extends Phaser.Scene {
 
         // rendering background image
         this.add.image(400,300,'skyBackground');
+        // creating clouds
+        otherBackground = this.add.tileSprite(400,300,800,600,'otherBg');
         cloudsLarge = this.add.tileSprite(400,300,800,600, 'clouds-large');
         cloudsSmall = this.add.tileSprite(400,300,800,600, 'clouds-small');
 
@@ -80,6 +88,14 @@ class GameScene extends Phaser.Scene {
 
         // init Player @ position
         player = this.physics.add.sprite(400, 100, 'plane');
+
+        this.anims.create({
+           key:'fly',
+            frames: this.anims.generateFrameNumbers('plane', { start: 0, end: 1 }),
+            frameRate: 10,
+            repeat: -1
+        });
+
         // Defining player properties
         player.setBounce(0.2);
         player.setCollideWorldBounds(true);
@@ -107,11 +123,24 @@ class GameScene extends Phaser.Scene {
         // Movement
         if (cursors.up.isDown || cursors.space.isDown){
             player.setVelocityY(-100);
+            player.anims.play('fly', true);
         }
+        if(cursors.left.isDown){
+            player.setVelocityX(-100);
+            player.anims.play('fly', true);
+        }
+        if(cursors.right.isDown){
+            player.setVelocityX(100);
+            player.anims.play('fly', true);
+        }
+
+        // Move Background
+        otherBackground.tilePositionX += 0.1;
 
         // Move Clouds
         cloudsLarge.tilePositionX += 0.5;
         cloudsSmall.tilePositionX += 0.25;
+
     }
 
 }

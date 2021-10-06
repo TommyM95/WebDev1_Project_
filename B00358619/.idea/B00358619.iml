@@ -11,5 +11,6 @@
     <orderEntry type="library" name="modernizr" level="application" />
     <orderEntry type="library" name="normalize" level="application" />
     <orderEntry type="library" name="vanilla-tilt" level="application" />
+    <orderEntry type="library" name="phaser" level="application" />
   </component>
 </module>
