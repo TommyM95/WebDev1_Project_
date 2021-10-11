@@ -71,7 +71,8 @@
     height: auto;
     padding: 50px 10%;
     text-align: center;
-    background-color: aquamarine;
+    background-color: #0e151f;
+    color: #FFFFFF;
 }
 
 /*** team **********************************************************************/
@@ -80,7 +81,8 @@
     height: auto;
     padding: 50px 10%;
     text-align: center;
-    background-color: greenyellow;
+    background-color: #0e151f;
+    color: #FFFFFF;
 }
 
 /*** contact **********************************************************************/
@@ -89,11 +91,13 @@
     height: auto;
     padding: 50px 10%;
     text-align: center;
-    background-color: rebeccapurple;
+    background-color: #0e151f;
+    color: #FFFFFF;
 }
 
 /*** footer **********************************************************************/
 #footer{
     padding: 50px 10%;
     background-color: cadetblue;
+    color: #FFFFFF;
 }
