@@ -20,6 +20,7 @@ let RestartSceneBool;
 let WinSceneBool;
 let pauseSceneBool;
 let planeSound;
+let audioPaused;
 let muteButton;
 let muteOnButton;
 
@@ -54,7 +55,7 @@ class GameScene extends Phaser.Scene {
 
     create ()
     {
-
+        audioPaused = false;
         this.game.events.on(Phaser.Core.Events.BLUR, () => {
             this.handleLoseFocus()
         })
@@ -119,6 +120,24 @@ class GameScene extends Phaser.Scene {
             go.setVelocityX(-80)
         });
 
+
+        const muteButton = this.add.sprite( 750, 45, 'mute_Button')
+            .setInteractive()
+            .on('pointerdown', function () {
+                if(audioPaused===false){
+                    console.log("Mute Button Pressed no else");
+                    planeSound.pause();
+                    muteButton.setTexture('muteOn_Button');
+                    audioPaused = true;
+                }else if(audioPaused===true){
+                    console.log("Mute Button Pressed else");
+                    planeSound.resume();
+                    muteButton.setTexture('mute_Button');
+                    audioPaused = false;
+                }
+            });
+
+
         // init Player @ position
         player = this.physics.add.sprite(400, 100, 'plane');
 
@@ -175,14 +194,14 @@ class GameScene extends Phaser.Scene {
         pauseSceneBool = false;
         this.input.keyboard.on('keydown-' + 'P', function (event) { pauseSceneBool = true; });
 
-        this.scene.events.on('resume', OnSceneResume);
+        //this.scene.events.on('resume', OnSceneResume);
         function OnSceneResume(){
             planeSound.play({
                 volume: 0.1,
                 loop: true
             });
         }
-        muteButton = this.add.image(335, 750,'mute_Button');
+
     }
 
     update ()

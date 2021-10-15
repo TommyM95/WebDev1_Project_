@@ -1,4 +1,4 @@
-import GameScene from "./GameScene";
+import GameScene from "./GameScene.js";
 
 let pauseSceneBool;
 class PauseScene extends Phaser.Scene {
