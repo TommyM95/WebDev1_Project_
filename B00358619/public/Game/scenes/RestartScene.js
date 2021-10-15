@@ -6,6 +6,7 @@ class RestartScene extends Phaser.Scene {
     preload(){
         this.load.image('titleScene_Background','./assets/titleSceneBackground.png');
         this.load.image('restart_Button','./assets/restartButton.png');
+        this.load.image('mainMenu_Button','./assets/mainMenuButton.png');
     }
 
     create(){
@@ -15,6 +16,9 @@ class RestartScene extends Phaser.Scene {
         const button = this.add.sprite( 400, 300, 'restart_Button')
             .setInteractive()
             .on('pointerdown', () => this.scene.start('GameScene'));
+        const buttonMainMenu = this.add.sprite( 400, 400, 'mainMenu_Button')
+            .setInteractive()
+            .on('pointerdown', () => this.scene.start('TitleScene'));
 
     }
 }

@@ -1,3 +1,5 @@
+import RestartScene from "./RestartScene.js";
+
 let gameOptions = {
     obstacleStatPosMinY: 0,
     obstacleStatPosMaxY: 600
@@ -13,8 +15,14 @@ let scoreText;                  // Score Text object
 let cloudsLarge;
 let cloudsSmall;
 let otherBackground;
+let RestartSceneBool;
+
+
+
 
 class GameScene extends Phaser.Scene {
+
+
     constructor() {
         super({key: 'GameScene'});
     }
@@ -36,6 +44,7 @@ class GameScene extends Phaser.Scene {
 
     create ()
     {
+
         // init controls
         cursors = this.input.keyboard.createCursorKeys();
 
@@ -109,7 +118,9 @@ class GameScene extends Phaser.Scene {
             playerHealth--;
             console.log("player Hp is now: " + playerHealth);
             if (playerHealth <= 0){
-                this.scene.start('RestartScene');
+                RestartSceneBool = true;
+                //this.game.scene.add('RestartScene', new RestartScene())
+                //this.game.scene.start('RestartScene');
             }
         }
 
@@ -125,7 +136,7 @@ class GameScene extends Phaser.Scene {
         }
         // Init score text
         scoreText = this.add.text(16, 16, 'Score: 0', { fontSize: '24px', fill: '#000' });
-
+        RestartSceneBool = false;
     }
 
     update ()
@@ -150,6 +161,10 @@ class GameScene extends Phaser.Scene {
         // Move Clouds
         cloudsLarge.tilePositionX += 0.5;
         cloudsSmall.tilePositionX += 0.25;
+
+        if(RestartSceneBool){
+            this.scene.start('RestartScene', new RestartScene());
+        }
 
     }
 
