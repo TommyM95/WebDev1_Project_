@@ -1,8 +1,10 @@
 import TitleScene from './TitleScene.js';
 import GameScene from './GameScene.js';
+import RestartScene from "./RestartScene";
 
 let titleScene = new TitleScene();
 let gameScene = new GameScene();
+let restartScene = new RestartScene();
 
 let config = {
     type: Phaser.AUTO,
@@ -21,4 +23,5 @@ let game = new Phaser.Game(config);
 
 game.scene.add('TitleScene', titleScene);
 game.scene.add('GameScene', gameScene);
+game.scene.add('RestartScene', restartScene);
 game.scene.start('TitleScene');

@@ -5,6 +5,7 @@ let gameOptions = {
 
 let cursors;                    // Controls
 let player;                     // Player
+let playerHealth;               // Player Health
 let floatingRockObstacles;      // Rock Type 1 Obstacle
 let medals;                     // Medals (things collided with for points)
 let score = 0;                  // Score
@@ -99,9 +100,18 @@ class GameScene extends Phaser.Scene {
         // Defining player properties
         player.setBounce(0.2);
         player.setCollideWorldBounds(true);
-
+        playerHealth = 100;
         // Adding collision between player and obstacles
-        this.physics.add.collider(player, floatingRockObstacles);
+        this.physics.add.collider(player, floatingRockObstacles, playerHitObstacleCallback);
+
+
+        function playerHitObstacleCallback(player, obstacleHit) {
+            playerHealth--;
+            console.log("player Hp is now: " + playerHealth);
+            if (playerHealth <= 0){
+                this.scene.start('RestartScene');
+            }
+        }
 
         // Making the medals be able to be picked up by the player on Collision
         this.physics.add.overlap(player, medals, collectMedal, null, this);
