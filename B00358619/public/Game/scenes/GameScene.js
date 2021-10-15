@@ -1,4 +1,5 @@
 import RestartScene from "./RestartScene.js";
+import WinScene from "./WinScene.js";
 
 let gameOptions = {
     obstacleStatPosMinY: 0,
@@ -16,6 +17,7 @@ let cloudsLarge;
 let cloudsSmall;
 let otherBackground;
 let RestartSceneBool;
+let WinSceneBool;
 
 
 
@@ -32,7 +34,6 @@ class GameScene extends Phaser.Scene {
         this.load.image('skyBackground', 'assets/sky_background.png');
         this.load.image('otherBg', "sourcedAssets/BG_Resize.png");
         this.load.image('floatingRock', 'assets/floatyRockTest.png');
-        // this.load.image('plane', 'sourcedAssets/Plane/plane_1_Resize.png');
         this.load.spritesheet('plane', 'sourcedAssets/Plane/flyingSprSheet.png',{
             frameWidth: 150, frameHeight: 97
     });
@@ -68,7 +69,7 @@ class GameScene extends Phaser.Scene {
 
         // Creating a floating rock obstacle
         let lastSpawnX = 0;
-        for (let i =0; i < 20; i++){
+        for (let i =0; i < 25; i++){
             let randNumY = Phaser.Math.Between(gameOptions.obstacleStatPosMinY,gameOptions.obstacleStatPosMaxY);
             let randNumX = Phaser.Math.Between(400,800);
             floatingRockObstacles.create(lastSpawnX+randNumX,randNumY, 'floatingRock');
@@ -84,7 +85,7 @@ class GameScene extends Phaser.Scene {
         // Creating medals
         medals.create(400,35, 'medal');
         let lastMedalSpawnX = 0;
-        for (let i =0; i < 20; i++){
+        for (let i =0; i < 25; i++){
             let randNumY = Phaser.Math.Between(gameOptions.obstacleStatPosMinY,gameOptions.obstacleStatPosMaxY);
             let randNumX = Phaser.Math.Between(400,800);
             medals.create(lastMedalSpawnX+randNumX,randNumY, 'medal');
@@ -119,13 +120,11 @@ class GameScene extends Phaser.Scene {
             console.log("player Hp is now: " + playerHealth);
             if (playerHealth <= 0){
                 RestartSceneBool = true;
-                //this.game.scene.add('RestartScene', new RestartScene())
-                //this.game.scene.start('RestartScene');
             }
         }
 
         // Making the medals be able to be picked up by the player on Collision
-        this.physics.add.overlap(player, medals, collectMedal, null, this);
+        this.physics.add.overlap(player, medals, collectMedal, playerHitMedalCallback, this);
         // Func to handle the collection of Medals
         function collectMedal(player, medal){
             medal.disableBody(true,true);
@@ -136,6 +135,14 @@ class GameScene extends Phaser.Scene {
         }
         // Init score text
         scoreText = this.add.text(16, 16, 'Score: 0', { fontSize: '24px', fill: '#000' });
+
+        function playerHitMedalCallback(player, medalHit) {
+            console.log("player Score is now: " + score);
+            if (score >= 19){
+                WinSceneBool = true;
+            }
+        }
+        WinSceneBool = false;
         RestartSceneBool = false;
     }
 
@@ -164,6 +171,9 @@ class GameScene extends Phaser.Scene {
 
         if(RestartSceneBool){
             this.scene.start('RestartScene', new RestartScene());
+        }
+        if(WinSceneBool){
+            this.scene.start('WinScene', new WinScene());
         }
 
     }
