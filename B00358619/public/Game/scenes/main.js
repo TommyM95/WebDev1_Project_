@@ -1,6 +1,6 @@
 import TitleScene from './TitleScene.js';
 import GameScene from './GameScene.js';
-import RestartScene from "./RestartScene";
+import RestartScene from './RestartScene.js';
 
 let titleScene = new TitleScene();
 let gameScene = new GameScene();
