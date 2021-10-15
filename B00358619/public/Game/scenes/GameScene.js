@@ -18,11 +18,13 @@ let cloudsSmall;
 let otherBackground;
 let RestartSceneBool;
 let WinSceneBool;
+let pauseSceneBool;
 
 
 
 
 class GameScene extends Phaser.Scene {
+
 
 
     constructor() {
@@ -117,7 +119,7 @@ class GameScene extends Phaser.Scene {
 
         function playerHitObstacleCallback(player, obstacleHit) {
             playerHealth--;
-            console.log("player Hp is now: " + playerHealth);
+            //console.log("player Hp is now: " + playerHealth);
             if (playerHealth <= 0){
                 RestartSceneBool = true;
             }
@@ -144,12 +146,14 @@ class GameScene extends Phaser.Scene {
         }
         WinSceneBool = false;
         RestartSceneBool = false;
+        pauseSceneBool = false;
+        this.input.keyboard.on('keydown-' + 'P', function (event) { pauseSceneBool = true; });
     }
 
     update ()
     {
         // Movement
-        if (cursors.up.isDown || cursors.space.isDown){
+        if (cursors.up.isDown){
             player.setVelocityY(-100);
             player.anims.play('fly', true);
         }
@@ -160,6 +164,12 @@ class GameScene extends Phaser.Scene {
         if(cursors.right.isDown){
             player.setVelocityX(100);
             player.anims.play('fly', true);
+        }
+
+        if (pauseSceneBool){
+            this.scene.launch('PauseScene');
+            this.scene.pause()
+            pauseSceneBool = false;
         }
 
         // Move Background
