@@ -1,3 +1,5 @@
+import GameScene from "./GameScene";
+
 let pauseSceneBool;
 class PauseScene extends Phaser.Scene {
     constructor() {
@@ -20,6 +22,12 @@ class PauseScene extends Phaser.Scene {
         });
         pauseSceneBool = false;
         this.input.keyboard.on('keydown-' + 'P', function (event) { pauseSceneBool = true; });
+        function OnSceneResume(){
+            planeSound.play({
+                volume: 0.1,
+                loop: true
+            });
+        }
     }
 
     update(){
@@ -27,6 +35,7 @@ class PauseScene extends Phaser.Scene {
             this.scene.resume('GameScene');
             this.scene.stop();
             pauseSceneBool = false;
+
         }
 
     }

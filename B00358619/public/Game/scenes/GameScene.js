@@ -20,7 +20,8 @@ let RestartSceneBool;
 let WinSceneBool;
 let pauseSceneBool;
 let planeSound;
-
+let muteButton;
+let muteOnButton;
 
 
 
@@ -47,11 +48,25 @@ class GameScene extends Phaser.Scene {
 
         this.load.audio('planeAudio',['sourcedAssets/Sound/planePropSoundMod.mp3',
             'sourcedAssets/Sound/planePropSoundMod.ogg']);
-
+        this.load.image('mute_Button', "assets/muteButton.png");
+        this.load.image('muteOn_Button', 'assets/muteOnButton.png');
     }
 
     create ()
     {
+
+        this.game.events.on(Phaser.Core.Events.BLUR, () => {
+            this.handleLoseFocus()
+        })
+
+        document.addEventListener('visibilitychange', () => {
+            if (!document.hidden)
+            {
+                return
+            }
+
+            this.handleLoseFocus()
+        })
 
         // init controls
         cursors = this.input.keyboard.createCursorKeys();
@@ -160,6 +175,14 @@ class GameScene extends Phaser.Scene {
         pauseSceneBool = false;
         this.input.keyboard.on('keydown-' + 'P', function (event) { pauseSceneBool = true; });
 
+        this.scene.events.on('resume', OnSceneResume);
+        function OnSceneResume(){
+            planeSound.play({
+                volume: 0.1,
+                loop: true
+            });
+        }
+        muteButton = this.add.image(335, 750,'mute_Button');
     }
 
     update ()
@@ -181,9 +204,10 @@ class GameScene extends Phaser.Scene {
 
         if (pauseSceneBool){
             this.scene.launch('PauseScene');
-            this.scene.pause()
-            planeSound.pause();
-            planeSound.resume();
+            this.scene.pause();
+            this.handleLoseFocus();
+            // planeSound.pause();
+            // planeSound.resume();
             pauseSceneBool = false;
         }
 
@@ -203,6 +227,27 @@ class GameScene extends Phaser.Scene {
 
     }
 
+    handleLoseFocus()
+    {
+        // assuming a Paused scene that has a pause modal
+        if (this.scene.isActive('PauseScene'))
+        {
+            return
+        }
+
+        // pause sound
+        planeSound.pause()
+
+        // Paused Scene will call the onResume callback when ready
+        this.scene.run('PauseScene', {
+            onResume: () => {
+                this.scene.stop('PauseScene')
+
+                // resume sound
+                //planeSound.resume()
+            }
+        })
+    }
 }
 
 export default GameScene;

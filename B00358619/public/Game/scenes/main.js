@@ -22,7 +22,15 @@ let config = {
             gravity: {y: 300},
             debug: false
         }
-    }
+    },
+    scene:[
+        titleScene,
+        pauseScene,
+        gameScene,
+        restartScene,
+        winScene
+
+    ]
 }
 
 let game = new Phaser.Game(config);
