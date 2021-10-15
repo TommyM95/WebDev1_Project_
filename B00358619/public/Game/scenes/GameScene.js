@@ -45,7 +45,9 @@ class GameScene extends Phaser.Scene {
         this.load.image('clouds-large', "assets/clouds-large.png");
         this.load.image('clouds-small', "assets/clouds-small.png");
 
-        this.load.audio('pplane_sound'['sourcedAssets/Sound/planeSoundProp.mp3','sourcedAssets/Sound/planeSoundProp.ogg']);
+        this.load.audio('planeAudio',['sourcedAssets/Sound/planePropSoundMod.mp3',
+            'sourcedAssets/Sound/planePropSoundMod.ogg']);
+
     }
 
     create ()
@@ -112,13 +114,16 @@ class GameScene extends Phaser.Scene {
             repeat: -1
         });
 
-        planeSound = this.sound.add('pplane_sound', {volume: 0.3, loop: true });
+        planeSound = this.sound.add('planeAudio');
         // Defining player properties
 
         player.setBounce(0.2);
         player.setCollideWorldBounds(true);
         playerHealth = 100;
-        planeSound.play('pplane_sound');
+        planeSound.play({
+            volume: 0.1,
+            loop: true
+        });
         // Adding collision between player and obstacles
         this.physics.add.collider(player, floatingRockObstacles, playerHitObstacleCallback);
 
@@ -154,6 +159,7 @@ class GameScene extends Phaser.Scene {
         RestartSceneBool = false;
         pauseSceneBool = false;
         this.input.keyboard.on('keydown-' + 'P', function (event) { pauseSceneBool = true; });
+
     }
 
     update ()
@@ -162,6 +168,7 @@ class GameScene extends Phaser.Scene {
         if (cursors.up.isDown){
             player.setVelocityY(-100);
             player.anims.play('fly', true);
+
         }
         if(cursors.left.isDown){
             player.setVelocityX(-100);
@@ -175,6 +182,8 @@ class GameScene extends Phaser.Scene {
         if (pauseSceneBool){
             this.scene.launch('PauseScene');
             this.scene.pause()
+            planeSound.pause();
+            planeSound.resume();
             pauseSceneBool = false;
         }
 
