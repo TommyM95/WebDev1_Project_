@@ -19,6 +19,7 @@ let otherBackground;
 let RestartSceneBool;
 let WinSceneBool;
 let pauseSceneBool;
+let planeSound;
 
 
 
@@ -43,6 +44,8 @@ class GameScene extends Phaser.Scene {
         this.load.image('medal', 'assets/medal.png');
         this.load.image('clouds-large', "assets/clouds-large.png");
         this.load.image('clouds-small', "assets/clouds-small.png");
+
+        this.load.audio('pplane_sound'['sourcedAssets/Sound/planeSoundProp.mp3','sourcedAssets/Sound/planeSoundProp.ogg']);
     }
 
     create ()
@@ -109,10 +112,13 @@ class GameScene extends Phaser.Scene {
             repeat: -1
         });
 
+        planeSound = this.sound.add('pplane_sound', {volume: 0.3, loop: true });
         // Defining player properties
+
         player.setBounce(0.2);
         player.setCollideWorldBounds(true);
         playerHealth = 100;
+        planeSound.play('pplane_sound');
         // Adding collision between player and obstacles
         this.physics.add.collider(player, floatingRockObstacles, playerHitObstacleCallback);
 
