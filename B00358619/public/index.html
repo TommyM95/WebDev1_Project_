@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
     <title>HiveCore</title>
 
     <link rel="stylesheet" href="Website/css/hexStyle.css">
@@ -21,7 +22,7 @@
   <nav class="nav">
     <ul class="nav-ul">
       <li><a href="index.html">Home</a></li>
-      <li><a href="#gameDesign">Game Design</a></li>
+      <li><a href="GameDesign.html">Game Design</a></li>
       <li><a href="#team">Meet the Team</a></li>
       <li><a href="Game/game.html">Play!</a></li>
       <li><a href="#contact">Contact</a></li>
@@ -35,68 +36,80 @@
 
 <ul id="hexGrid" data-tilt data-tilt-max="5" data-tilt-speed="200" data-tilt-perspective="1000">
   <li class="hex">
-    <a class="hexIn" href="#">
-      <img src="Website/assets/images/game2.png" alt="" />
-      <h1>This is a title</h1>
-      <p>Some sample text about the article this hexagon leads to</p>
-    </a>
-  </li>
-  <li class="hex">
-    <a class="hexIn" href="#gameDesign">
-      <img src="Website/assets/images/about.png" alt="" />
-      <h1>This is a title</h1>
-      <p>Some sample text about the article this hexagon leads to</p>
-    </a>
-  </li>
-  <li class="hex">
-    <a class="hexIn" href="#">
-      <img src="Website/assets/images/blog.png" alt="" />
-      <h1>This is a title</h1>
-      <p>Some sample text about the article this hexagon leads to</p>
-    </a>
-  </li>
-  <li class="hex">
-    <a class="hexIn" href="#">
-      <img src="Website/assets/images/hivecore.png" alt="" />
-      <h1>This is a title</h1>
-      <p>Some sample text about the article this hexagon leads to</p>
-    </a>
-  </li>
-  <li class="hex">
-    <a class="hexIn" href="#">
-      <img src="Website/assets/images/portfolio.png" alt="" />
-      <h1>This is a title</h1>
-      <p>Some sample text about the article this hexagon leads to</p>
+    <a class="hexIn" href="#gameSection">
+      <img src="Website/assets/images/game2.png" alt="link to game page image" />
+      <h1>Check out our latest Game!</h1>
+      <p>Click to learn more about our latest Game!</p>
     </a>
   </li>
   <li class="hex">
     <a class="hexIn" href="#team">
-      <img src="Website/assets/images/team.png" alt="" />
+      <img src="Website/assets/images/about.png" alt="link to about page image" />
       <h1>This is a title</h1>
       <p>Some sample text about the article this hexagon leads to</p>
     </a>
   </li>
   <li class="hex">
+    <a class="hexIn" href="https://devtommy.blogspot.com/" target="_blank">
+      <img src="Website/assets/images/blog.png" alt="link to blog page image" />
+      <h1>Developer Blog </h1>
+      <p>This link leads to the blog</p>
+    </a>
+  </li>
+  <li class="hex">
+    <a class="hexIn" href="#">
+      <img src="Website/assets/images/hivecore.png" alt="link to home page image" />
+      <h1>Home</h1>
+      <p>This simply takes you to the homepage</p>
+    </a>
+  </li>
+  <li class="hex">
+    <a class="hexIn" href="https://www.artstation.com/imgekko/profile" target="_blank">
+      <img src="Website/assets/images/portfolio.png" alt="link to portfolio image" />
+      <h1>Portfolio</h1>
+      <p>Click here to be taken to Tommy's Portfolio</p>
+    </a>
+  </li>
+  <li class="hex">
+    <a class="hexIn" href="#team">
+      <img src="Website/assets/images/team.png" alt="link to portfolio image" />
+      <h1>Team</h1>
+      <p>Click here to discover more about the one-man team of Hivecore</p>
+    </a>
+  </li>
+  <li class="hex">
     <a class="hexIn" href="#contact">
-      <img src="Website/assets/images/contact.png" alt="" />
-      <h1>This is a title</h1>
-      <p>Some sample text about the article this hexagon leads to</p>
+      <img src="Website/assets/images/contact.png" alt="link to contact page image" />
+      <h1>Get in contact</h1>
+      <p>Need to get in contact? Click here!</p>
     </a>
   </li>
 </ul>
 
+<div class="ContentContainer">
+<div class="gameSection" id="gameSection">
 
-<div id="gameDesign">
-  <h2>Game Design</h2>
-  <p>Game Design </p>
+  <div class="gameSection_child">
+    <h2>Projects</h2>
+    <hr class="hr3">
+    <p>Our latest game <b>'Plane Pilot'</b> is a 2D SideScrolling game! <b><u>(Still in Alpha)</u></b></p>
+    <p>-----------------------------------------</p>
+    <p>Learn More</p>
+  </div>
+  <div class="gameSection_child" data-tilt data-tilt-max="5" data-tilt-speed="200" data-tilt-perspective="1000">
+    <a href="Game/game.html"><img src="Website/assets/images/ppPromo1.png" alt="Promo image for the game Plane Pilot"></a>
+  </div>
+
+
 </div>
 <div id="team">
   <h2>Team</h2>
-  <p>team stuff blah</p>
+  <p>Hi! my name is Tommy</p>
 </div>
 <div id="contact">
   <h2>Contact</h2>
   <p>contact stuff blah</p>
+</div>
 </div>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
