@@ -24,8 +24,7 @@ let WinSceneBool;
 let pauseSceneBool;
 let planeSound;
 let audioPaused;
-let muteButton;
-let muteOnButton;
+let muteButtonBool;
 
 
 
@@ -127,17 +126,7 @@ class GameScene extends Phaser.Scene {
         const muteButton = this.add.sprite( 750, 45, 'mute_Button')
             .setInteractive()
             .on('pointerdown', function () {
-                if(audioPaused===false){
-                    console.log("Mute Button Pressed no else");
-                    planeSound.pause();
-                    muteButton.setTexture('muteOn_Button');
-                    audioPaused = true;
-                }else if(audioPaused===true){
-                    console.log("Mute Button Pressed else");
-                    planeSound.resume();
-                    muteButton.setTexture('mute_Button');
-                    audioPaused = false;
-                }
+                PauseAudioToggle();
             });
 
 
@@ -195,7 +184,21 @@ class GameScene extends Phaser.Scene {
         RestartSceneBool = false;
         pauseSceneBool = false;
         this.input.keyboard.on('keydown-' + 'P', function (event) { pauseSceneBool = true; });
+        this.input.keyboard.on('keydown-' + 'M', function (event) { PauseAudioToggle()});
 
+        function PauseAudioToggle() {
+            if(audioPaused===false){
+                console.log("Mute Button Pressed no else");
+                planeSound.pause();
+                muteButton.setTexture('muteOn_Button');
+                audioPaused = true;
+            }else if(audioPaused===true){
+                console.log("Mute Button Pressed else");
+                planeSound.resume();
+                muteButton.setTexture('mute_Button');
+                audioPaused = false;
+            }
+        }
     }
 
     update ()
@@ -231,9 +234,14 @@ class GameScene extends Phaser.Scene {
 
         if(RestartSceneBool){
             this.scene.start('RestartScene', new RestartScene());
+            planeSound.pause();
+            audioPaused = true;
+
         }
         if(WinSceneBool){
             this.scene.start('WinScene', new WinScene());
+            planeSound.pause();
+            audioPaused = true;
         }
 
     }

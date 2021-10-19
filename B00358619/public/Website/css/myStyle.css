@@ -65,15 +65,46 @@
     font-family: 'Montserrat', sans-serif;
 }
 
+/*** ContentContainer ***********************************************************/
+.ContentContainer{
+
+    max-height:100%;
+    max-width:100%;
+    height: fit-content;
+    width: 100%;
+    display: inline-block;
+}
 /*** about **********************************************************************/
 
-#gameDesign{
-    height: auto;
+/*** GameSection ****************************************************************/
+.gameSection{
+    margin-top:5%;
+    height: fit-content;
     padding: 50px 10%;
     text-align: center;
     background-color: #0e151f;
     color: #FFFFFF;
+    max-height:100%;
+    max-width:100%;
+    display: inline-block;
+    /*margin-bottom: 600px;*/
 }
+
+.gameSection_child{
+    max-height:100%;
+    max-width:100%;
+    height: auto;
+    width: 50%;
+    float: left;
+}
+.gameSection_child img{
+    display: inline-block;
+    max-height:100%;
+    max-width:100%;
+    height: auto;
+    width: auto;
+}
+
 
 /*** team **********************************************************************/
 
