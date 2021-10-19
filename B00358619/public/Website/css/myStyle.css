@@ -74,6 +74,7 @@
     width: 100%;
     display: inline-block;
 }
+
 /*** about **********************************************************************/
 
 /*** GameSection ****************************************************************/
@@ -91,6 +92,7 @@
 }
 
 .gameSection_child{
+
     max-height:100%;
     max-width:100%;
     height: auto;
@@ -131,4 +133,26 @@
     padding: 50px 10%;
     background-color: cadetblue;
     color: #FFFFFF;
+}
+
+#ppTitle{
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+#ppTitle img{
+    display: block;
+
+    margin-left: auto;
+    margin-right: auto
+}
+
+.ppDesign{
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.hr3 {
+    border: 0;
+    height: 2px;
+    background-image: linear-gradient(to right, transparent, #CCC, transparent);
 }
