@@ -14,7 +14,6 @@ class PauseScene extends Phaser.Scene {
     create(){
         // Set background image
         let background = this.add.sprite(400,300,'pause_Background');
-        // let button = this.add.sprite(400,300,'play_Button');
         const button = this.add.sprite( 400, 360, 'resume_Button')
             .setInteractive()
             .on('pointerdown', function () {

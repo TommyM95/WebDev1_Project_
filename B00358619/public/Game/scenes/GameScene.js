@@ -16,6 +16,9 @@ let scoreText;                  // Score Text object
 let cloudsLarge;
 let cloudsSmall;
 let otherBackground;
+let cloudLargeSpeed = 0.5;
+let cloudSmallSpeed = 0.25;
+let backgroundSpeed = 0.1;
 let RestartSceneBool;
 let WinSceneBool;
 let pauseSceneBool;
@@ -164,7 +167,6 @@ class GameScene extends Phaser.Scene {
 
         function playerHitObstacleCallback(player, obstacleHit) {
             playerHealth--;
-            //console.log("player Hp is now: " + playerHealth);
             if (playerHealth <= 0){
                 RestartSceneBool = true;
             }
@@ -185,7 +187,7 @@ class GameScene extends Phaser.Scene {
 
         function playerHitMedalCallback(player, medalHit) {
             console.log("player Score is now: " + score);
-            if (score >= 19){
+            if (score >= 3){
                 WinSceneBool = true;
             }
         }
@@ -193,14 +195,6 @@ class GameScene extends Phaser.Scene {
         RestartSceneBool = false;
         pauseSceneBool = false;
         this.input.keyboard.on('keydown-' + 'P', function (event) { pauseSceneBool = true; });
-
-        //this.scene.events.on('resume', OnSceneResume);
-        function OnSceneResume(){
-            planeSound.play({
-                volume: 0.1,
-                loop: true
-            });
-        }
 
     }
 
@@ -225,17 +219,15 @@ class GameScene extends Phaser.Scene {
             this.scene.launch('PauseScene');
             this.scene.pause();
             this.handleLoseFocus();
-            // planeSound.pause();
-            // planeSound.resume();
             pauseSceneBool = false;
         }
 
         // Move Background
-        otherBackground.tilePositionX += 0.1;
+        otherBackground.tilePositionX += backgroundSpeed;
 
         // Move Clouds
-        cloudsLarge.tilePositionX += 0.5;
-        cloudsSmall.tilePositionX += 0.25;
+        cloudsLarge.tilePositionX += cloudLargeSpeed;
+        cloudsSmall.tilePositionX += cloudSmallSpeed;
 
         if(RestartSceneBool){
             this.scene.start('RestartScene', new RestartScene());

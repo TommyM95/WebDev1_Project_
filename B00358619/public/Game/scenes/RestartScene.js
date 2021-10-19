@@ -12,7 +12,6 @@ class RestartScene extends Phaser.Scene {
     create(){
         // Set background image
         let background = this.add.sprite(400,300,'titleScene_Background');
-        // let button = this.add.sprite(400,300,'play_Button');
         const button = this.add.sprite( 400, 300, 'restart_Button')
             .setInteractive()
             .on('pointerdown', () => this.scene.start('GameScene'));
