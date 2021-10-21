@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
-
 /*** Nav Bar **********************************************************************/
 .bottomMenu {
     position: fixed;
@@ -53,7 +52,6 @@
     text-decoration: none;
 }
 
-/* Change the link color to #111 (black) on hover */
 .nav-ul li a:hover {
     background-color: #111;
 }
