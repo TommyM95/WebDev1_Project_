@@ -180,9 +180,9 @@ class GameScene extends Phaser.Scene {
                 WinSceneBool = true;
             }
         }
-        WinSceneBool = false;
-        RestartSceneBool = false;
-        pauseSceneBool = false;
+        WinSceneBool = false;       // Init Bool to false
+        RestartSceneBool = false;   // Init Bool to false
+        pauseSceneBool = false;     // Init Bool to false
         this.input.keyboard.on('keydown-' + 'P', function (event) { pauseSceneBool = true; });
         this.input.keyboard.on('keydown-' + 'M', function (event) { PauseAudioToggle()});
 
