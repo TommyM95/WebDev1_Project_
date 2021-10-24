@@ -7,6 +7,10 @@ let gameOptions = {
 }
 
 let cursors;                    // Controls
+let keyA;
+let keyS;
+let keyD;
+let keyW;
 let player;                     // Player
 let playerHealth;               // Player Health
 let floatingRockObstacles;      // Rock Type 1 Obstacle
@@ -57,6 +61,11 @@ class GameScene extends Phaser.Scene {
 
     create ()
     {
+        keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
+        keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
+        keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
+        keyW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
+
         audioPaused = false;
         this.game.events.on(Phaser.Core.Events.BLUR, () => {
             this.handleLoseFocus()
@@ -204,16 +213,16 @@ class GameScene extends Phaser.Scene {
     update ()
     {
         // Movement
-        if (cursors.up.isDown){
+        if (cursors.up.isDown || keyW.isDown){
             player.setVelocityY(-100);
             player.anims.play('fly', true);
 
         }
-        if(cursors.left.isDown){
+        if(cursors.left.isDown || keyA.isDown){
             player.setVelocityX(-100);
             player.anims.play('fly', true);
         }
-        if(cursors.right.isDown){
+        if(cursors.right.isDown  || keyD.isDown){
             player.setVelocityX(100);
             player.anims.play('fly', true);
         }
