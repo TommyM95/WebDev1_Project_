@@ -162,7 +162,7 @@ class GameScene extends Phaser.Scene {
         // Adding collision between player and obstacles
         this.physics.add.collider(player, floatingRockObstacles, playerHitObstacleCallback);
 
-
+        // Called when player collides with an obstacle
         function playerHitObstacleCallback(player, obstacleHit) {
             playerHealth--;
             if (playerHealth <= 0){
@@ -185,10 +185,11 @@ class GameScene extends Phaser.Scene {
 
         function playerHitMedalCallback(player, medalHit) {
             console.log("player Score is now: " + score);
-            if (score >= 3){
+            if (score >= 10){
                 WinSceneBool = true;
             }
         }
+
         WinSceneBool = false;       // Init Bool to false
         RestartSceneBool = false;   // Init Bool to false
         pauseSceneBool = false;     // Init Bool to false

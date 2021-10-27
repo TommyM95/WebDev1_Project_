@@ -133,7 +133,7 @@
     background-color: cadetblue;
     color: #FFFFFF;
 }
-
+/*************************************************************************/
 #ppTitle{
     padding-top: 50px;
     padding-bottom: 50px;
@@ -168,6 +168,32 @@ iframe{
     border: 0;
 }
 table{
-    margin-left: auto;
+    margin-left: 1px;
     margin-right: auto;
+}
+.UnderGameInfoContainer{
+    width: 50%;
+    display: flex;
+    /*margin-left: 27.5%;*/
+    margin-left: 25%;
+    margin-right: 25%;
+    border: 3px solid #fff;
+    padding: 20px;
+
+}
+.UnderGameInfoContainerChild{
+    width: 50%;
+    float: left;
+    border: 2px solid transparent;
+    color: #FFFFFF;
+    text-align: left;
+
+}
+.UnderGameInfoContainerChildA{
+    width: 50%;
+    float: left;
+    border: 20px solid transparent;
+    color: #FFFFFF;
+    text-align: right;
+
 }
