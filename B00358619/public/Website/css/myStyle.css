@@ -1,9 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
-
 /*** Nav Bar **********************************************************************/
 .bottomMenu {
     position: fixed;
-    bottom: 0;
+    top: 0;
     color: white;
     width: 100%;
     height: 60px;
@@ -53,7 +52,6 @@
     text-decoration: none;
 }
 
-/* Change the link color to #111 (black) on hover */
 .nav-ul li a:hover {
     background-color: #111;
 }
@@ -135,7 +133,7 @@
     background-color: cadetblue;
     color: #FFFFFF;
 }
-
+/*************************************************************************/
 #ppTitle{
     padding-top: 50px;
     padding-bottom: 50px;
@@ -148,7 +146,8 @@
 }
 
 .ppDesign{
-    text-align: center;
+    margin-left: 25%;
+    margin-right: 25%;
     color: #FFFFFF;
 
 }
@@ -170,6 +169,32 @@ iframe{
     border: 0;
 }
 table{
-    margin-left: auto;
+    margin-left: 1px;
     margin-right: auto;
+}
+.UnderGameInfoContainer{
+    width: 50%;
+    display: flex;
+    /*margin-left: 27.5%;*/
+    margin-left: 25%;
+    margin-right: 25%;
+    border: 3px solid #fff;
+    padding: 20px;
+
+}
+.UnderGameInfoContainerChild{
+    width: 50%;
+    float: left;
+    border: 2px solid transparent;
+    color: #FFFFFF;
+    text-align: left;
+
+}
+.UnderGameInfoContainerChildA{
+    width: 50%;
+    float: left;
+    border: 20px solid transparent;
+    color: #FFFFFF;
+    text-align: right;
+
 }
