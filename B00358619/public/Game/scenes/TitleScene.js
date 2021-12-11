@@ -14,7 +14,7 @@ class TitleScene extends Phaser.Scene {
         // let button = this.add.sprite(400,300,'play_Button');
         const button = this.add.sprite( 400, 300, 'play_Button')
             .setInteractive()
-            .on('pointerdown', () => this.scene.start('GameScene'));
+            .on('pointerdown', () => this.scene.start('LevelSelectScene'));
 
     }
 }
